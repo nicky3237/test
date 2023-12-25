@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/custom.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="login-form">
+      <h1>Login</h1>
+      <form onsubmit="submitForm(); return false;">
+        <p>UserName</p>
+        <input type="text" name="user" id="user" placeholder="UserName" />
+        <p>Password</p>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <button type="submit">Login</button> <br />
+        <a href="./registration.html">Create an account</a>
+      </form>
+    </div>
+    <script>
+      const baseUrl = "http://localhost:8080/api/";
+      const login = baseUrl + "user/signin";
+      function submitForm() {
+        const username = document.getElementById("user").value;
+        const password = document.getElementById("password").value;
+        const data = {
+          email: username,
+          password: password,
+        };
+        axios
+          .post(login, data)
+          .then((response) => {
+            console.log("Login Successful:", response?.data);
+            alert("Login Successful!");
+          })
+          .catch((error) => {
+            console.error("Error during login:", error.response?.data);
+            alert("Login Failed!");
+          });
+      }
+    </script>
+  </body>
+</html>

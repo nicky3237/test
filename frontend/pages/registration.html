@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/custom.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="registration-form">
+      <h1>Registration</h1>
+      <form id="registrationForm">
+        <p>First Name</p>
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="FirstName"
+        />
+
+        <p>Last Name</p>
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="LastName"
+        />
+
+        <p>Mobile Number</p>
+        <input
+          type="text"
+          name="mobileNumber"
+          id="mobileNumber"
+          placeholder="MobileNumber"
+        />
+
+        <p>Email Id</p>
+        <input type="text" name="email" id="email" placeholder="emailId" />
+
+        <p>Password</p>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+
+        <button type="button" onclick="submitForm()">Submit Now</button> <br />
+      </form>
+
+      <script>
+        const baseUrl = "http://localhost:8080/api/";
+        const signupApi = baseUrl + "user/signup";
+
+        function submitForm() {
+          const firstName = document.getElementById("firstName").value;
+          const lastName = document.getElementById("lastName").value;
+          const mobileNumber = document.getElementById("mobileNumber").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          // Form data to be sent in the request
+          const formData = {
+            firstName: firstName,
+            lastName: lastName,
+            mobileNumber: mobileNumber,
+            email: email,
+            password: password,
+          };
+
+          // Make a POST request using Axios
+          axios
+            .post(signupApi, formData)
+            .then((response) => {
+              console.log("Signup Successful:", response.data);
+              alert("Signup Successful!");
+            })
+            .catch((error) => {
+              console.error("Error during signup:", error.response.data);
+              alert("Signup Failed!");
+            });
+        }
+      </script>
+    </div>
+  </body>
+</html>

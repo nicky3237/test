@@ -1,0 +1,12 @@
+flex-all-center {
+  background: black;
+  color: white;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  height: 10vh;
+  text-align: center;
+  padding: 1pc;
+  line-height: 1.5; /* Adjust the line-height value as needed */
+  text-align: center;
+}
